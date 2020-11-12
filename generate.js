@@ -54,8 +54,18 @@ if (
   );
 }
 
+const BUILD = process.env.BUILD.toLowerCase() || "gatsby";
+if (
+  typeof BUILD !== `string` ||
+  !(BUILD === "gatsby" || BUILD === "next" || BUILD === "eleventy")
+) {
+  throw new Error(
+    `Error: the value for BUILD is invalid: \`` + process.env.BUILD + `\``
+  );
+}
+
 const templateClojure = (index) =>
-  template(NUM_PAGES, MAX_LINES, MAX_LINKS, MAX_SECTIONS, index);
+  template(BUILD, NUM_PAGES, MAX_LINES, MAX_LINKS, MAX_SECTIONS, index);
 
 console.log(
   `Generating`,

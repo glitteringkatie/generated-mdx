@@ -2,7 +2,14 @@
 const faker = require(`faker`);
 const matter = require(`gray-matter`);
 
-module.exports = (numPages, numLines, maxLinks, maxSections, index) => {
+const defaultTemplate = (link) => `[${link}](/${link})`;
+const templatedLink = {
+  gatsby: (link) => `<DocLink id="${link}" />`,
+  next: defaultTemplate,
+  eleventy: defaultTemplate,
+};
+
+module.exports = (build, numPages, numLines, maxLinks, maxSections, index) => {
   const frontMatter = {
     id: index,
     slug: `/${index}`,
@@ -19,8 +26,9 @@ module.exports = (numPages, numLines, maxLinks, maxSections, index) => {
   const randomPages = [...Array(faker.random.number(maxLinks))].map(() =>
     faker.random.number(numPages)
   );
+  const linkTemplate = templatedLink[build] || defaultTemplate;
   const randomLinks = randomPages.map(
-    (page) => `Reference [page ${page}](/${page})`
+    (page) => `Reference ${linkTemplate(page)}`
   );
 
   const randomApi = [...Array(faker.random.number(numLines))].map(() =>
@@ -28,6 +36,11 @@ module.exports = (numPages, numLines, maxLinks, maxSections, index) => {
 |${faker.lorem.word()}|${faker.lorem.sentence()}|${faker.random.boolean()}|
 `.trim()
   );
+
+  const shouldHaveRandomPhoto = faker.random.arrayElement([true, false]);
+  const maybeRandomPhoto = shouldHaveRandomPhoto
+    ? `![](/assets/cats-${faker.random.number(5)}.jpg)`
+    : ``;
 
   const randomSections = [...Array(faker.random.number(maxSections))].map(
     (num) => {
@@ -47,6 +60,7 @@ ${fakeParagraphs.join("\n")}`;
 ${randomApi.join("\n")}
 
 ${randomLinks.join("\n")}
+${maybeRandomPhoto}
 
 ${randomSections.join("\n")}
 `;

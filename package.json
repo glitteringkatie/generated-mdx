@@ -1,4 +1,13 @@
 {
+  "name": "generated-mdx",
+  "description": "Generated docs to benchmark SSG builds",
+  "version": "0.0.1",
+  "author": "Katie Hughes <glitteringkatie@github>",
+  "scripts": {
+    "gatsby": "rm -rf generated-docs/ && BUILD=gatsby node generate.js",
+    "next": "rm -rf generated-docs/ && BUILD=next node generate.js",
+    "eleventy": "rm -rf generated-docs/ && BUILD=eleventy node generate.js"
+  },
   "dependencies": {
     "faker": "^5.1.0",
     "gray-matter": "^4.0.2"
