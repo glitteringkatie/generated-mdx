@@ -57,7 +57,7 @@ if (
 const BUILD = process.env.BUILD.toLowerCase() || "gatsby";
 if (
   typeof BUILD !== `string` ||
-  !(BUILD === "gatsby" || BUILD === "next" || BUILD === "eleventy")
+  !["gatsby", "next", "eleventy", "elastic"].includes(BUILD)
 ) {
   throw new Error(
     `Error: the value for BUILD is invalid: \`` + process.env.BUILD + `\``

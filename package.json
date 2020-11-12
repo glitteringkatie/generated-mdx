@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Katie Hughes <glitteringkatie@github>",
   "scripts": {
+    "elastic": "rm -rf generated-docs/ && BUILD=elastic node generate.js",
     "gatsby": "rm -rf generated-docs/ && BUILD=gatsby node generate.js",
     "next": "rm -rf generated-docs/ && BUILD=next node generate.js",
     "eleventy": "rm -rf generated-docs/ && BUILD=eleventy node generate.js"

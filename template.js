@@ -4,7 +4,8 @@ const matter = require(`gray-matter`);
 
 const defaultTemplate = (link) => `[${link}](/${link})`;
 const templatedLink = {
-  gatsby: (link) => `<DocLink id="${link}" />`,
+  elastic: (link) => `<DocLink id="${link}" />`,
+  gastby: defaultTemplate,
   next: defaultTemplate,
   eleventy: defaultTemplate,
 };
