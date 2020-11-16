@@ -13,7 +13,7 @@ const templatedLink = {
 module.exports = (build, numPages, numLines, maxLinks, maxSections, index) => {
   const frontMatter = {
     id: index,
-    slug: `/${index}`,
+    slug: `/generated-docs/${index}`,
     title: faker.lorem.sentence(),
     summary: faker.lorem.sentence(),
     date: faker.date.recent(1000).toISOString().slice(0, 10),
