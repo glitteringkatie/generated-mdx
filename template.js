@@ -2,7 +2,7 @@
 const faker = require(`faker`);
 const matter = require(`gray-matter`);
 
-const defaultTemplate = (link) => `[${link}](/${link})`;
+const defaultTemplate = (link) => `[${link}](/generated-docs/${link})`;
 const templatedLink = {
   elastic: (link) => `<DocLink id="${link}" />`,
   gastby: defaultTemplate,
