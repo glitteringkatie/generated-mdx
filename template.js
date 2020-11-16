@@ -44,11 +44,11 @@ module.exports = (build, numPages, numLines, maxLinks, maxSections, index) => {
     : ``;
 
   const randomSections = [...Array(faker.random.number(maxSections))].map(
-    (num) => {
+    (_num, index) => {
       const fakeParagraphs = [...Array(faker.random.number(5))].map(() =>
         faker.lorem.paragraphs()
       );
-      return `### Section ${num}
+      return `### Section ${index}
 ${fakeParagraphs.join("\n")}`;
     }
   );
