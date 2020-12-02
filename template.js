@@ -72,8 +72,8 @@ ${fakeParagraphs.join("\n")}`;
   );
 
   return `${frontMatterString}
-${maybeRandomPartial}
 ## Page #${index} : ${faker.random.words(4)}
+${maybeRandomPartial}
 ### API
 
 ${randomApi.join("\n")}
