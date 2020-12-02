@@ -38,7 +38,7 @@ module.exports = (
     : false;
   const maybeRandomPartial = shouldHaveRandomPartial
     ? `import Partial from '../assets/partials/partial-${faker.random.number(
-        3
+        2
       )}.mdx'`
     : "";
 
@@ -58,7 +58,7 @@ module.exports = (
 
   const shouldHaveRandomPhoto = faker.random.arrayElement([true, false]);
   const maybeRandomPhoto = shouldHaveRandomPhoto
-    ? `![](/assets/cats-${faker.random.number(5)}.jpg)`
+    ? `![](/assets/cats-${faker.random.number(4)}.jpg)`
     : ``;
 
   const randomSections = [...Array(faker.random.number(maxSections))].map(
