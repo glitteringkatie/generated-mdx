@@ -37,7 +37,7 @@ module.exports = (
     ? faker.random.arrayElement([true, false])
     : false;
   const maybeRandomPartial = shouldHaveRandomPartial
-    ? `import Partial from 'partial-${faker.random.number(
+    ? `import Partial from '../assets/partials/partial-${faker.random.number(
         3
       )}.mdx'\n<Partial />\n`
     : "";
@@ -72,8 +72,8 @@ ${fakeParagraphs.join("\n")}`;
   );
 
   return `${frontMatterString}
-## Page #${index} : ${faker.random.words(4)}
 ${maybeRandomPartial}
+## Page #${index} : ${faker.random.words(4)}
 ### API
 
 ${randomApi.join("\n")}
