@@ -54,6 +54,19 @@ if (
   );
 }
 
+const WITH_PARTIALS = process.env.WITH_PARTIALS.toLowerCase() || "false";
+if (
+  typeof WITH_PARTIALS !== `string` ||
+  !["y", "n", "yes", "no", "true", "false"].includes(WITH_PARTIALS)
+) {
+  throw new Error(
+    `Error: the value for WITH_PARTIALS is invalid: \`` +
+      process.env.WITH_PARTIALS +
+      `\``
+  );
+}
+const withPartials = ["y", "yes", "true"].includes(WITH_PARTIALS);
+
 const BUILD = process.env.BUILD.toLowerCase() || "gatsby";
 if (
   typeof BUILD !== `string` ||
@@ -65,14 +78,23 @@ if (
 }
 
 const templateClojure = (index) =>
-  template(BUILD, NUM_PAGES, MAX_LINES, MAX_LINKS, MAX_SECTIONS, index);
+  template(
+    BUILD,
+    NUM_PAGES,
+    MAX_LINES,
+    MAX_LINKS,
+    MAX_SECTIONS,
+    withPartials,
+    index
+  );
 
 console.log(
   `Generating`,
   NUM_PAGES,
-  `pseudo random md files in`,
+  `pseudo random mdx files in`,
   path.resolve(root)
 );
+if (withPartials) console.log("with partials");
 if (!process.env.NUM_PAGES || process.env.NUM_PAGES === `2000`) {
   console.log(` Set \`NUM_PAGES=200\` to change the volume`);
 }

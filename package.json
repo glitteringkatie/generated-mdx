@@ -6,6 +6,7 @@
   "scripts": {
     "elastic": "rm -rf generated-docs/ && BUILD=elastic node generate.js",
     "gatsby": "rm -rf generated-docs/ && BUILD=gatsby node generate.js",
+    "gatsby-partials": "rm -rf generated-docs/ && BUILD=gatsby WITH_PARTIALS=y node generate.js",
     "next": "rm -rf generated-docs/ && BUILD=next node generate.js",
     "eleventy": "rm -rf generated-docs/ && BUILD=eleventy node generate.js"
   },

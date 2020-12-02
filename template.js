@@ -10,7 +10,15 @@ const templatedLink = {
   eleventy: defaultTemplate,
 };
 
-module.exports = (build, numPages, numLines, maxLinks, maxSections, index) => {
+module.exports = (
+  build,
+  numPages,
+  numLines,
+  maxLinks,
+  maxSections,
+  withPartials,
+  index
+) => {
   const frontMatter = {
     id: index,
     slug: `/generated-docs/${index}`,
@@ -24,6 +32,16 @@ module.exports = (build, numPages, numLines, maxLinks, maxSections, index) => {
       .join(`, `)}]`,
   };
   const frontMatterString = matter.stringify(``, frontMatter).trim();
+
+  const shouldHaveRandomPartial = withPartials
+    ? faker.random.arrayElement([true, false])
+    : false;
+  const maybeRandomPartial = shouldHaveRandomPartial
+    ? `import Partial from 'partial-${faker.random.number(
+        3
+      )}.mdx'\n<Partial />\n`
+    : "";
+
   const randomPages = [...Array(faker.random.number(maxLinks))].map(() =>
     faker.random.number(numPages)
   );
@@ -54,7 +72,7 @@ ${fakeParagraphs.join("\n")}`;
   );
 
   return `${frontMatterString}
-
+${maybeRandomPartial}
 ## Page #${index} : ${faker.random.words(4)}
 ### API
 
