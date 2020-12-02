@@ -36,10 +36,9 @@ module.exports = (
   const shouldHaveRandomPartial = withPartials
     ? faker.random.arrayElement([true, false])
     : false;
+  const partialNumber = faker.random.number(2);
   const maybeRandomPartial = shouldHaveRandomPartial
-    ? `import Partial from '../assets/partials/partial-${faker.random.number(
-        2
-      )}.mdx'`
+    ? `import Partial${partialNumber} from '../assets/partials/partial-${partialNumber}.mdx'`
     : "";
 
   const randomPages = [...Array(faker.random.number(maxLinks))].map(() =>
@@ -82,7 +81,7 @@ ${randomApi.join("\n")}
 ${randomLinks.join("\n")}
 ${maybeRandomPhoto}
 
-${shouldHaveRandomPartial ? "<Partial />\n" : ""}
+${shouldHaveRandomPartial ? `<Partial${partialNumber} />\n` : ""}
 
 ${randomSections.join("\n")}
 `;
