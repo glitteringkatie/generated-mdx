@@ -54,7 +54,7 @@ if (
   );
 }
 
-const WITH_PARTIALS = process.env.WITH_PARTIALS.toLowerCase() || "false";
+const WITH_PARTIALS = (process.env.WITH_PARTIALS || "false").toLowerCase();
 if (
   typeof WITH_PARTIALS !== `string` ||
   !["y", "n", "yes", "no", "true", "false"].includes(WITH_PARTIALS)
